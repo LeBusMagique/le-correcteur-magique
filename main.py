@@ -1,3 +1,4 @@
+import os
 from dotenv import dotenv_values
 from trello import TrelloClient
 import discord
@@ -5,7 +6,10 @@ from discord_slash.utils import manage_components
 from discord_slash.model import ButtonStyle
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
-config = dotenv_values(".env")
+config = {
+    **dotenv_values(".env"),
+    **os.environ,
+}
 discord = discord.Client()
 scheduler = AsyncIOScheduler()
 
